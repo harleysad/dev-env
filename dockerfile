@@ -3,12 +3,15 @@ FROM ubuntu:latest
 
 # Update package lists and install required tools
 RUN apt-get update && \
-    apt-get install -y curl tar nginx
+    apt-get install -y curl tar nginx sudo
     
 # Download and extract VS Code CLI
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
     tar -xf vscode_cli.tar.gz && \
-    rm vscode_cli.tar.gz
+    rm vscode_cli.tar.gz && \
+    usermod -aG sudo ubuntu
+
+
 
 # The container will run tail -f /dev/null to keep running
 CMD ["tail", "-f", "/dev/null"]
