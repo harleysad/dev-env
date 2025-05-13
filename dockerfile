@@ -11,7 +11,7 @@ RUN apt-get update && \
 #     rm vscode_cli.tar.gz
 
 # The container will run tail -f /dev/null to keep running
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
 
 # CMD ["/code", "serve-web",  "--without-connection-token"]
-# CMD ["nginx"]
+CMD ["nginx"]
