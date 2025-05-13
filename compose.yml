@@ -5,7 +5,7 @@ services:
     image: mcr.microsoft.com/vscode/dev-containers/base:ubuntu
     container_name: vscode-api
     volumes:
-      - /${{production.SHARE_PATH}}:/home/user/samba
+      - /${SHARE_PATH}:/home/user/samba
     ports:
       - 3000:3000  # Porta da API (opcional)
     command: code tunnel --accept-server-license-terms --name ${TUNEL_NAME}
