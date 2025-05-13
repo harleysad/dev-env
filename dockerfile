@@ -13,4 +13,4 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 # The container will run tail -f /dev/null to keep running
 # CMD ["tail", "-f", "/dev/null"]
 
-CMD ["/code", "serve-web"]
+CMD ["/code", "serve-web", "--host 0.0.0.0", "--connection-token pipoca"]
