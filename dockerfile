@@ -11,4 +11,5 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     rm vscode_cli.tar.gz
 
 # The container will run tail -f /dev/null to keep running
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
+CMD ["code", "serve-web"]
