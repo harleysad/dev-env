@@ -1,7 +1,8 @@
 # Use the latest Debian image
 FROM ubuntu:latest
 
-COPY entrypoint.sh /entrypoint.sh  # Copia o arquivo para dentro do contêiner
+# Copia o arquivo para dentro do contêiner
+COPY entrypoint.sh /entrypoint.sh  
 # Update package lists and install required tools
 RUN apt-get update && \
     apt-get install -y \
@@ -12,8 +13,7 @@ RUN apt-get update && \
     curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
     tar -xf vscode_cli.tar.gz && \
     rm vscode_cli.tar.gz && \
-    chmod +x /entrypoint.sh  # Garante que ele seja executável
-
+    chmod +x /entrypoint.sh  
 
 # USER ubuntu
 # CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir

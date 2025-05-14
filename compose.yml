@@ -6,8 +6,8 @@ services:
     container_name: vscodeweb
     environment:
       - SENHA_UBT: ${SENHA_UBT}
-    volumes:
-      - ./entrypoint.sh:/entrypoint.sh
+    # volumes:
+    #   - ./entrypoint.sh:/entrypoint.sh
     entrypoint: "tail -f /dev/null"
     # entrypoint: ["/bin/sh", "/entrypoint.sh"]
     ports:
