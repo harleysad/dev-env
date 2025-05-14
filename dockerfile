@@ -37,7 +37,7 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 #       --verbose                      Print verbose output (implies --wait)
 #       --log <level>                  Log level to use [possible values: trace, debug, info, warn, error, critical, off]
 # -----------------------------------------------------------------------------
-CMD "/code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir" 
+CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 
 
 # The container will run tail -f /dev/null to keep running
