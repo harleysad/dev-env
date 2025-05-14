@@ -1,7 +1,7 @@
 # Use the latest Debian image
 FROM ubuntu:latest
 
-ENV MINHA_VARIAVEL=valor
+ENV SENHA_UBT=valor
 
 # Update package lists and install required tools
 RUN apt-get update && \
