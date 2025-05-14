@@ -7,7 +7,7 @@ services:
     # args:
     #     - SENHA_UBT=${SENHA_UBT}
     environment:
-      - SENHA_UBT=xxxx
+      - SENHA_UBT: xxxx
     ports:
       - 80  # Mapeia a porta 80 para uma porta aleatória que sera capturada pelo coolify
     volumes:

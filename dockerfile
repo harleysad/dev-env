@@ -2,8 +2,8 @@
 FROM ubuntu:latest
 
 # ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
-# ARG SENHA_UBT
-ENV SENHA_UBTI=$SENHA_UBT
+ARG SENHA_UBT
+ENV SENHA_UBTI=${SENHA_UBT}
 
 # Update package lists and install required tools
 # RUN apt-get update && \
