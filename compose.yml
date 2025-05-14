@@ -5,7 +5,7 @@ services:
     build: .
     container_name: vscodeweb
     ports:
-      - "8080:80"  # Mapeia a porta 80 do contêiner para a 8080 do host
+      - 80  # Mapeia a porta 80 para uma porta aleatória que sera capturada pelo coolify
     volumes:
       - ./dados:/app/dados  # Monta um volume local na pasta /app/dados do contêiner
     restart: unless-stopped
