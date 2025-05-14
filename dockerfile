@@ -16,4 +16,4 @@ RUN apt-get update && \
 # CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 
 # The container will run tail -f /dev/null to keep running
-# CMD tail -f /teste.txt 
+ENTRYPOINT tail -f /teste.txt 
