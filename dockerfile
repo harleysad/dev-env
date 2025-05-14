@@ -3,8 +3,7 @@ FROM ubuntu:latest
 
 # Update package lists and install required tools
 RUN apt-get update && \
-    apt-get install -y curl tar nginx sudo \
-    git btop htop neovim wget curl 
+    apt-get install -y curl tar nginx sudo git btop htop neovim wget curl 
     
 # Download and extract VS Code CLI
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
