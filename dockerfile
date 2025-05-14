@@ -1,5 +1,5 @@
 # Use the latest Debian image
-FROM ubuntu:latest
+FROM debian:latest
 
 # Copia o arquivo para dentro do contêiner
 COPY entrypoint.sh /entrypoint.sh  
@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y \
     bash-completion curl wget unzip tar nano \
     vim htop neofetch tree lsof strace tmux git \
-    p7* sudo btop neovim && \
+    p7* sudo btop neovim build-essential && \
 # Download and extract VS Code CLI
     curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
     tar -xf vscode_cli.tar.gz && \
