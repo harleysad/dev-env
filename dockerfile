@@ -2,8 +2,8 @@
 FROM ubuntu:latest
 
 ARG SENHA_UBT
-ENV SENHA_UBT=${SENHA_UBT}
 # ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
+# ENV SENHA_UBT=${SENHA_UBT}
 
 
 # Update package lists and install required tools
@@ -18,8 +18,8 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     tar -xf vscode_cli.tar.gz && \
     rm vscode_cli.tar.gz && \
     usermod -aG sudo ubuntu && \
-    echo "ubuntu:"$SENHA_UBT > teste.txt && \
-    echo "ubuntu":$SENHA_UBT | chpasswd  
+    echo "ubuntu:"${SENHA_UBT} > teste.txt && \
+    echo "ubuntu":${SENHA_UBT} | chpasswd  
     
 # -----------------------------------------------------------------------------
 # /code serve-web -h
