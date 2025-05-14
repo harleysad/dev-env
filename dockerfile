@@ -1,14 +1,15 @@
 # Use the latest Debian image
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
-ENV SENHA_UBT=
+ENV SENHA_UBT=senha
 
 # Update package lists and install required tools
 RUN apt-get update && \
     apt-get install -y \
     bash-completion curl wget unzip tar nano \
     vim htop neofetch tree lsof strace tmux git \
-    p7* sudo btop neovim   
+    p7* sudo btop neovim  && \
+    rm -rf /var/lib/apt/lists/*
     
 # Download and extract VS Code CLI
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
@@ -18,6 +19,8 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     echo "ubuntu:"$SENHA_UBT > teste.txt && \
     echo "ubuntu":$SENHA_UBT | chpasswd  
     
+USER ubuntu
+CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 # -----------------------------------------------------------------------------
 # /code serve-web -h
 # Runs a local web version of Visual Studio Code
@@ -45,8 +48,6 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 #       --verbose                      Print verbose output (implies --wait)
 #       --log <level>                  Log level to use [possible values: trace, debug, info, warn, error, critical, off]
 # -----------------------------------------------------------------------------
-USER ubuntu
-CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 
 
 # The container will run tail -f /dev/null to keep running
