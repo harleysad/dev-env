@@ -54,7 +54,7 @@ USER ubuntu
 
 
 # The container will run tail -f /dev/null to keep running
-CMD "tail -f /dev/null" 
+CMD tail -f /dev/null 
 
 # CMD ["/code", "serve-web",  "--without-connection-token"]
 # CMD ["nginx", "-g", "daemon off;"]
