@@ -2,23 +2,24 @@
 FROM ubuntu:latest
 
 # ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
-ARG SENHA_UBT
-ENV SENHA_UBT=${SENHA_UBT}
+# ARG SENHA_UBT
+# ENV SENHA_UBT=${SENHA_UBT}
 
 # Update package lists and install required tools
-RUN apt-get update && \
-    apt-get install -y \
-    bash-completion curl wget unzip tar nano \
-    vim htop neofetch tree lsof strace tmux git \
-    p7* sudo btop neovim   
+# RUN apt-get update && \
+#     apt-get install -y \
+#     bash-completion curl wget unzip tar nano \
+#     vim htop neofetch tree lsof strace tmux git \
+#     p7* sudo btop neovim   
     
 # Download and extract VS Code CLI
-RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
-    tar -xf vscode_cli.tar.gz && \
-    rm vscode_cli.tar.gz && \
-    usermod -aG sudo ubuntu && \
-    echo "ubuntu:"${SENHA_UBT} > teste.txt && \
-    echo "ubuntu":${SENHA_UBT} | chpasswd  
+
+RUN usermod -aG sudo ubuntu && \
+    # rm vscode_cli.tar.gz && \ 
+    # curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
+    # tar -xf vscode_cli.tar.gz && \
+    echo "ubuntu:"$SENHA_UBT > teste.txt && \
+    echo "ubuntu":$SENHA_UBT | chpasswd  
     
 # -----------------------------------------------------------------------------
 # /code serve-web -h
@@ -48,11 +49,11 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 #       --log <level>                  Log level to use [possible values: trace, debug, info, warn, error, critical, off]
 # -----------------------------------------------------------------------------
 USER ubuntu
-CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
+# CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 
 
 # The container will run tail -f /dev/null to keep running
-# CMD "tail -f /dev/null" 
+CMD "tail -f /dev/null" 
 
 # CMD ["/code", "serve-web",  "--without-connection-token"]
 # CMD ["nginx", "-g", "daemon off;"]
