@@ -8,7 +8,9 @@ RUN apt-get update && \
 # Download and extract VS Code CLI
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \
     tar -xf vscode_cli.tar.gz && \
-    rm vscode_cli.tar.gz 
+    rm vscode_cli.tar.gz && \
+    usermod -aG sudo ubuntu
+    echo "ubuntu:${SENHA_UBT}" | chpasswd 
     
 # -----------------------------------------------------------------------------
 # /code serve-web -h
