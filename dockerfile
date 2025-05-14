@@ -1,11 +1,14 @@
 # Use the latest Debian image
 FROM ubuntu:latest
 
-ENV SENHA_UBT=valor
+ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
 
 # Update package lists and install required tools
 RUN apt-get update && \
-    apt-get install -y curl tar nginx sudo git btop htop neovim wget curl 
+    apt-get install -y \
+    bash-completion curl wget unzip tar nano \
+    vim htop neofetch tree lsof strace tmux git \
+    p7* sudo btop neovim   
     
 # Download and extract VS Code CLI
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && \

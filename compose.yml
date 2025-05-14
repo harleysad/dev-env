@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  api-nodejs:
-    image: mcr.microsoft.com/vscode/dev-containers/base:ubuntu
-    container_name: vscode-api
-    volumes:
-      - /${SHARE_PATH}:/home/user/samba
+  vscode:
+    build: .
+    container_name: vscodeweb
     ports:
-      - 3000:3000  # Porta da API (opcional)
-    command: code tunnel --accept-server-license-terms --name ${TUNEL_NAME}
+      - "8080:80"  # Mapeia a porta 80 do contêiner para a 8080 do host
+    volumes:
+      - ./dados:/app/dados  # Monta um volume local na pasta /app/dados do contêiner
+    restart: unless-stopped
