@@ -12,8 +12,7 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     tar -xf vscode_cli.tar.gz && \
     rm vscode_cli.tar.gz && \
     usermod -aG sudo ubuntu && \
-    echo ubuntu:$SENHA_UBT > teste.txt && \
-    echo ubuntu:$SENHA_UBT | chpasswd  
+    echo "ubuntu:$"SENHA_UBT > teste.txt 
     
 # -----------------------------------------------------------------------------
 # /code serve-web -h
