@@ -4,6 +4,8 @@ services:
   vscode:
     build: .
     container_name: vscodeweb
+    args:
+        SENHA_UBT: ${SENHA_UBT}
     environment:
       - SENHA_UBT=${SENHA_UBT}
     ports:

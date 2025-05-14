@@ -1,7 +1,9 @@
 # Use the latest Debian image
 FROM ubuntu:latest
 
-ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
+ARG SENHA_UBT
+ENV SENHA_UBT=${SENHA_UBT}
+#ENV SENHA_UBT=essa_senha_deve_ser_sobreescrita!
 
 # Update package lists and install required tools
 RUN apt-get update && \
