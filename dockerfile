@@ -1,5 +1,5 @@
 # Use the latest Debian image
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 ENV SENHA_UBT=senha
 
@@ -16,7 +16,8 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     tar -xf vscode_cli.tar.gz && \
     rm vscode_cli.tar.gz && \
     usermod -aG sudo ubuntu && \
-    echo "ubuntu:"$SENHA_UBT > teste.txt 
+    echo "ubuntu:"$SENHA_UBT > teste.txt && \
+    echo "ubuntu":$SENHA_UBT | chpasswd  
     
 USER ubuntu
 CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
