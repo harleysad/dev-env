@@ -48,4 +48,4 @@
 
 # Executa a aplicação com o usuário especificado
 # exec su - $USER_NAME -c "/code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir"
-exec tail -f /dev/null
+tail -f /dev/null
