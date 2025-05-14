@@ -8,8 +8,8 @@ services:
       - SENHA_UBT: ${SENHA_UBT}
     volumes:
       - ./entrypoint.sh:/entrypoint.sh
-    entrypoint: "tail -f /teste.txt"
-    # entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    # entrypoint: "tail -f /teste.txt"
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
     ports:
       - 80  # Mapeia a porta 80 para uma porta aleatória que sera capturada pelo coolify
     # volumes:
