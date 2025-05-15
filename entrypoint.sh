@@ -70,6 +70,6 @@ exec su - $USER_NAME -c "umask 0002 && \
                         /code serve-web \
                         --host 0.0.0.0 --port 80 \
                         --without-connection-token \
-                        --server-base-path ~/ \ 
+                        --server-base-path ~/ \
                         --server-data-dir $DATADIR"
 # tail -f /dev/null
