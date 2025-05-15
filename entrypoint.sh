@@ -30,9 +30,12 @@ sudo usermod -g $GROUP $USER_NAME
 # Altera a senha
 echo "$USER_NAME:$PASSWORD" | chpasswd
 # Usuario vai ter sudo
+
 usermod -aG sudo $USER_NAME
 # Acesso a pastas compartilhadas
 chown -R "$USER_NAME:$GROUP" /home/shared
+# Acesso de leitura no grupo para as pastas shared
+chmod -R g+w /home/shared
 
 # -----------------------------------------------------------------------------
 # vscode parameters

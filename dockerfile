@@ -1,5 +1,5 @@
 # Use the latest Debian image
-FROM ubuntu:latest
+FROM debian:latest
 
 # Copia o arquivo para dentro do contêiner
 COPY entrypoint.sh /entrypoint.sh  
