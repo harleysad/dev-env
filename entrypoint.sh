@@ -62,7 +62,7 @@ echo "$USER_NAME:$PASSWORD" | chpasswd
 usermod -aG sudo $USER_NAME
 
 #  Acesso a pastas compartilhadas
-chown $USER_NAME:$GROUP /home/shared
+# chown $USER_NAME:$GROUP /home/shared
 
 # Executa a aplicação com o usuário especificado
 exec su - $USER_NAME -c "/code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path ~/base-path --server-data-dir ~/data-dir"
