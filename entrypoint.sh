@@ -1,5 +1,39 @@
 #!/bin/sh
 
+USER_ID=1000 # Id do primeiro usuario linux
+USER_NAME="Coder"
+PASSWORD=$SENHA_UBT
+GROUP="users"
+# Verifica se o grupo 'users' existe
+if ! getent group $GROUP > /dev/null 2>&1; then
+    # se nao existe cria
+    sudo groupadd $GROUP
+fi
+# Verifica se já existe um usuário com o UID fornecido
+if getent passwd "$USER_ID" >/dev/null 2>&1; then
+    # Armazena o nome original
+    USER_NAMEI=$(getent passwd "$USER_ID" | cut -d: -f1)
+    # Altera o nome do usuario parão para o da variavel
+    usermod -l $USER_NAME $USER_NAMEI
+    # Ajusta o diretório home
+    mv /home/$USER_NAMEI /home/$USER_NAME
+    usermod -d /home/$USER_NAME -m $USER_NAME
+else
+    # cria o novo usuário
+    useradd -m -u $USER_ID -s /bin/bash $USER_NAME
+fi
+
+# Muda o grupo parao do usuário
+sudo usermod -g $GROUP $USER_NAME
+# Altera a senha
+echo "$USER_NAME:$PASSWORD" | chpasswd
+# Usuario vai ter sudo
+usermod -aG sudo $USER_NAME
+# Acesso a pastas compartilhadas
+chown "$USER_NAME:$GROUP" /home/shared
+
+# -----------------------------------------------------------------------------
+# vscode parameters
 # -----------------------------------------------------------------------------
 # /code serve-web -h
 # Runs a local web version of Visual Studio Code
@@ -28,42 +62,6 @@
 #       --log <level>                  Log level to use [possible values: trace, debug, info, warn, error, critical, off]
 # -----------------------------------------------------------------------------
 
-USER_ID=1000 # Id do primeiro usuario linux
-USER_NAME="Coder"
-PASSWORD=$SENHA_UBT
-GROUP="users"
-
-# Verifica se o grupo 'users' existe
-if ! getent group $GROUP > /dev/null 2>&1; then
-    sudo groupadd $GROUP
-fi
-
-# Verifica se já existe um usuário com o UID fornecido
-if getent passwd "$USER_ID" >/dev/null 2>&1; then
-    # Armazena o nome original
-    USER_NAMEI=$(getent passwd "$USER_ID" | cut -d: -f1)
-    # Altera o nome do usuario parão para o da variavel
-    usermod -l $USER_NAME $USER_NAMEI
-    # Ajusta o diretório home
-    mv /home/$USER_NAMEI /home/$USER_NAME
-    usermod -d /home/$USER_NAME -m $USER_NAME
-else
-    # cria o novo usuário
-    useradd -m -u $USER_ID -s /bin/bash $USER_NAME
-fi
-
-# Muda o grupo parao do usuário
-sudo usermod -g $GROUP $USER_NAME
-
-# Altera a senha
-echo "$USER_NAME:$PASSWORD" | chpasswd
-
-# Usuario vai ter sudo
-usermod -aG sudo $USER_NAME
-
-#  Acesso a pastas compartilhadas
-echo "USER_NAME=$USER_NAME, GROUP=$GROUP"
-chown "$USER_NAME:$GROUP" /home/shared
 
 # Executa a aplicação com o usuário especificado
 exec su - $USER_NAME -c "/code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path ~/base-path --server-data-dir ~/data-dir"

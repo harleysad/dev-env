@@ -15,8 +15,6 @@ RUN apt-get update && \
     rm vscode_cli.tar.gz && \
     chmod +x /entrypoint.sh  
 
-# USER ubuntu
-# CMD /code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path /base-path --server-data-dir /data-dir
 
 # The container will run tail -f /dev/null to keep running
-ENTRYPOINT tail -f /teste.txt 
+# ENTRYPOINT tail -f /teste.txt 
