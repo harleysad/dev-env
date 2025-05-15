@@ -6,8 +6,9 @@ services:
     container_name: vscodeweb
     environment:
       - SENHA_UBT: ${SENHA_UBT}
-    # volumes:
-    #   - ./entrypoint.sh:/entrypoint.sh
+    volumes:
+      - /container-data/vscode:/home
+      - /container-data:/home/shared
     entrypoint: "/entrypoint.sh"
     # entrypoint: ["/bin/sh", "/entrypoint.sh"]
     ports:
