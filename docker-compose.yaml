@@ -6,7 +6,7 @@ services:
     container_name: vscodeweb
     environment:
       - SENHA_UBT=${SENHA_UBT:-troque!}
-      
+      - CONTAINER_FOLDER=${CONTAINER_FOLDER:-container-folder}
     volumes:
       - /${CONTAINER_FOLDER}/vscode:/home
       - /${CONTAINER_FOLDER}:/home/shared
