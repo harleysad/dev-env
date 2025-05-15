@@ -70,7 +70,7 @@ chmod -R ug+w /home/shared
 
 
 # Executa a aplicação com o usuário especificado
-exec su - $USER_NAME -c "umask 0002 && \
+runuser -l $USER_NAME -c "umask 0002 && \
                         /code serve-web \
                         --host 0.0.0.0 --port 80 \
                         --without-connection-token \
