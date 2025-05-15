@@ -5,9 +5,9 @@ services:
     build: .
     container_name: vscodeweb
     environment:
-      # - SENHA_UBT: ${SENHA_UBT_IN}
-      - SENHA_UBTX: ${SENHA_UBTX}
-      - SENHA_UBTY: ${SENHA_UBTU}
+      - SOME_HARDCODED_VALUE=hello # Gets passed to the container but will not be visible in Coolify's UI
+      - SOME_VARIABLE=${SOME_VARIABLE_IN_COOLIFY_UI} # Creates an uninitialized environment variable editable in Coolify's UI
+      - SOME_DEFAULT_VARIABLE=${OTHER_NAME_IN_COOLIFY:-hello} # Creates an environment variable of value "hello" editable in Coolify's UI
     volumes:
       - /container_data/vscode:/home
       - /container_data:/home/shared
