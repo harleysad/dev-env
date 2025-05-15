@@ -8,8 +8,8 @@ services:
       - SENHA_UBT=${SENHA_UBT:-troque!}
       
     volumes:
-      - /{CONTAINER_FOLDER:-container_data}/vscode:/home
-      - /{CONTAINER_FOLDER:-container_data}:/home/shared
+      - /${CONTAINER_FOLDER:-container_data}/vscode:/home
+      - /${CONTAINER_FOLDER:-container_data}:/home/shared
     entrypoint: "/entrypoint.sh"
     # entrypoint: ["/bin/sh", "/entrypoint.sh"]
     ports:
