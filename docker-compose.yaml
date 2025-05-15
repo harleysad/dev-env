@@ -7,7 +7,7 @@ services:
     environment:
       - SENHA_UBT: ${SENHA_UBT:-senha_para_alterar}
     volumes:
-      - container_data/vscode:/home
+      - /container_data/vscode:/home
       - /container_data:/home/shared
     entrypoint: "/entrypoint.sh"
     # entrypoint: ["/bin/sh", "/entrypoint.sh"]
