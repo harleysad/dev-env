@@ -5,7 +5,7 @@ services:
     build: .
     container_name: vscodeweb
     environment:
-      - SENHA_UBT: ${SENHA_UBT}
+      - SENHA_UBT: ${SENHA_UBT_IN}
     volumes:
       - /container_data/vscode:/home
       - /container_data:/home/shared
