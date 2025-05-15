@@ -3,7 +3,9 @@
 USER_ID=1000 # Id do primeiro usuario linux
 USER_NAME="Coder"
 PASSWORD=$SENHA_UBT
+DATADIR=$VSCODE_DATA_DIR
 GROUP="users"
+
 # Verifica se o grupo 'users' existe
 if ! getent group $GROUP > /dev/null 2>&1; then
     # se nao existe cria
@@ -30,7 +32,7 @@ echo "$USER_NAME:$PASSWORD" | chpasswd
 # Usuario vai ter sudo
 usermod -aG sudo $USER_NAME
 # Acesso a pastas compartilhadas
-chown "$USER_NAME:$GROUP" /home/shared
+chown -R "$USER_NAME:$GROUP" /home/shared
 
 # -----------------------------------------------------------------------------
 # vscode parameters
@@ -64,5 +66,10 @@ chown "$USER_NAME:$GROUP" /home/shared
 
 
 # Executa a aplicação com o usuário especificado
-exec su - $USER_NAME -c "/code serve-web --host 0.0.0.0 --port 80 --without-connection-token --server-base-path ~/base-path --server-data-dir ~/data-dir"
+exec su - $USER_NAME -c "umask 0002 && \
+                        /code serve-web \
+                        --host 0.0.0.0 --port 80 \
+                        --without-connection-token \
+                        --server-base-path ~/ \ 
+                        --server-data-dir $DATADIR"
 # tail -f /dev/null

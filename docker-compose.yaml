@@ -7,9 +7,12 @@ services:
     environment:
       - SENHA_UBT=${SENHA_UBT:-troque!}
       - CONTAINER_FOLDER=${CONTAINER_FOLDER:-container-folder}
+      - VSCODE_DATA_DIR=${VSCODE_DATA_DIR:-~/datadir}
     volumes:
       - /${CONTAINER_FOLDER}/vscode:/home
       - /${CONTAINER_FOLDER}:/home/shared
+      - /mnt:/home/shared/mnt
+      - /media:/home/shared/media
     entrypoint: "/entrypoint.sh"
     ports:
       - 80  # Mapeia a porta 80 para uma porta aleatória que sera capturada pelo coolify
