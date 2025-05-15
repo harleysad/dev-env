@@ -35,7 +35,8 @@ usermod -aG sudo $USER_NAME
 # Acesso a pastas compartilhadas
 chown -R "$USER_NAME:$GROUP" /home/shared
 # Acesso de leitura no grupo para as pastas shared
-find /home/shared -type d -exec chmod g+wx {} + chmod -R g+w /home/shared
+find /home/shared -type d -exec chmod g+x {} + 
+chmod -R ug+w /home/shared
 
 # -----------------------------------------------------------------------------
 # vscode parameters
