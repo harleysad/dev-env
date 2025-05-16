@@ -4,6 +4,7 @@ services:
   vscode:
     build: .
     container_name: vscodeweb
+    hostname: vscodeweb
     environment:
       - DEFAULT_USER=${DEFAULT_USER:-Coder}
       - SENHA_UBT=${SENHA_UBT:-troque!}
