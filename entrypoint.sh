@@ -1,10 +1,14 @@
 #!/bin/sh
 
 USER_ID=1000 # Id do primeiro usuario linux
-USER_NAME="Coder"
+USER_NAME=$DEFAULT_USER # Nome do usuario padrao
 PASSWORD=$SENHA_UBT
 DATADIR=$VSCODE_DATA_DIR
 GROUP="users"
+
+# -----------------------------------------------------------------------------
+# 1- Configração para um usuario padrão e permissoes de acesso
+# -----------------------------------------------------------------------------
 
 # Verifica se o grupo 'users' existe
 if ! getent group $GROUP > /dev/null 2>&1; then
@@ -30,8 +34,12 @@ sudo usermod -g $GROUP $USER_NAME
 # Altera a senha
 echo "$USER_NAME:$PASSWORD" | chpasswd
 # Usuario vai ter sudo
-
 usermod -aG sudo $USER_NAME
+#------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Acesso a pastas compartilhadas, e pontos de montagem
+# -----------------------------------------------------------------------------
 # Acesso a pastas compartilhadas
 chown -R "$USER_NAME:$GROUP" /home/shared
 # Acesso de leitura no grupo para as pastas shared
@@ -68,6 +76,9 @@ find /home/shared -type d -exec chmod g+x {} +
 #       --log <level>                  Log level to use [possible values: trace, debug, info, warn, error, critical, off]
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# umask 0002 -> ao criar arquivos, o grupo tera permissao de escrita
+# -----------------------------------------------------------------------------
 
 # Executa a aplicação com o usuário especificado
 runuser -l $USER_NAME -c "umask 0002 && \
