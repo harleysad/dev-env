@@ -5,7 +5,7 @@ services:
     build: .
     container_name: vscodeweb
     environment:
-      - DEFAULT_USER=${DEFAULT_USER:-customer}
+      - DEFAULT_USER=${DEFAULT_USER:-Coder}
       - SENHA_UBT=${SENHA_UBT:-troque!}
       - CONTAINER_FOLDER=${CONTAINER_FOLDER:-container-folder}
       - VSCODE_DATA_DIR=${VSCODE_DATA_DIR:-~/datadir}
